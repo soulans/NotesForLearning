@@ -1,5 +1,8 @@
-> 有道精品课 2019年2月13日
+> 有道精品课 2019年2月14日
 # Python编程零基础速成集训营
+
+[TOC]
+
 ## 第一章 变量和数据类型
 ### 第一节丨变量
 #### 1. 变量命名规则
@@ -470,7 +473,7 @@ print(set1 ^ set2)                           # res: {3, 4, 8, 9}
 
 ## 其他的小操作
 
-### 将`.py脚本文件`制作成为`.exe可执行文件`
+### 一、将`.py脚本文件`制作成为`.exe可执行文件`
 #### 1. 前提准备
  - 在已经安装了Python的前提下，需要再安装两个软件。只需要使用`pip`命令安装就行了
  - 如果python没有在环境变量中，需要进入到Python安装目录下的Scripts目录内进行操作。默认一般为`%homedrive%%homepath%\AppData\Local\Programs\Python\Python36\Scripts`
@@ -527,9 +530,10 @@ You should consider upgrading via the 'python -m pip install --upgrade pip' comm
 ```
 
 #### 2. 制作
-使用`pyinstaller`命令进行制作。本例中代码文件存放为`d:\youdao_python_proj01_cv.py`。
+使用`pyinstaller`命令进行制作。本例中代码文件存放为`d:\youdao_python_proj01_cv.py`。  
+在`cmd`中输入
 ```cmd
-pyinstaller -F d:\youdao_python_proj01_cv.py
+pyinstaller -F E:\youdao_python_proj01_cv.py
 ```
 
 `pyinstaller`命令参数表：
@@ -592,4 +596,21 @@ pyinstaller -F d:\youdao_python_proj01_cv.py
 8723 INFO: Building EXE from EXE-00.toc completed successfully.
 ```
 
-之后在`Python安装目录` > `Scripts目录` > `dist目录` 下即可找到`.exe可执行文件`
+之后在运行目录下，本文即`%homedrive%%homepath%\dist`目录下一般即可找到该文件。也可使用搜索功能查找`脚本文件名.exe`找到该文件。
+
+> **运行目录：**
+> cmd界面中
+> ```cmd
+> Microsoft Windows [版本 10.0.17134.228]
+> (c) 2018 Microsoft Corporation。保留所有权利。
+> C:\Users\maink>
+> ```
+> `>`前，形为`C:\Users\maink`格式路径即为运行目录。
+
+#### 3. Python出现闪退
+这样直接制作的Python脚本可执行文件，会在执行到最后一行代码后自动退出。  
+需要在Python脚本文件最后加入一行代码，等待用户输入后再退出程序执行。
+```python
+input()
+```
+则脚本执行完毕后，从键盘按下任意键后自动退出。
