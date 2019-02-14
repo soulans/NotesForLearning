@@ -465,3 +465,131 @@ print(set1 ^ set2)                           # res: {3, 4, 8, 9}
 - - - - -
 
 ## 项目作业丨对话式对战游戏设计
+
+- - - - -
+
+## 其他的小操作
+
+### 将`.py脚本文件`制作成为`.exe可执行文件`
+#### 1. 前提准备
+ - 在已经安装了Python的前提下，需要再安装两个软件。只需要使用`pip`命令安装就行了
+ - 如果python没有在环境变量中，需要进入到Python安装目录下的Scripts目录内进行操作。默认一般为`%homedrive%%homepath%\AppData\Local\Programs\Python\Python36\Scripts`
+
+##### 1.1. 安装`pyinstaller`
+在`cmd`中输入
+```cmd
+pip install pyinstaller
+```
+显示为
+```cmd
+Collecting pyinstaller
+  Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.VerifiedHTTPSConnection object at 0x00000105A5BBD588>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed',)': /packages/03/32/0e0de593f129bf1d1e77eed562496d154ef4460fd5cecfd78612ef39a0cc/PyInstaller-3.4.tar.gz
+  Downloading https://files.pythonhosted.org/packages/03/32/0e0de593f129bf1d1e77eed562496d154ef4460fd5cecfd78612ef39a0cc/PyInstaller-3.4.tar.gz (3.5MB)
+    100% |████████████████████████████████| 3.5MB 245kB/s
+Requirement already satisfied: setuptools in c:\users\maink\appdata\local\programs\python\python36\lib\site-packages (from pyinstaller)
+Collecting pefile>=2017.8.1 (from pyinstaller)
+  Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.VerifiedHTTPSConnection object at 0x00000105A5BA8320>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed',)': /simple/pefile/
+  Downloading https://files.pythonhosted.org/packages/ed/cc/157f20038a80b6a9988abc06c11a4959be8305a0d33b6d21a134127092d4/pefile-2018.8.8.tar.gz (62kB)
+    100% |████████████████████████████████| 71kB 2.3MB/s
+Collecting macholib>=1.8 (from pyinstaller)
+  Downloading https://files.pythonhosted.org/packages/41/f1/6d23e1c79d68e41eb592338d90a33af813f98f2b04458aaf0b86908da2d8/macholib-1.11-py2.py3-none-any.whl
+Collecting altgraph (from pyinstaller)
+  Downloading https://files.pythonhosted.org/packages/0a/cc/646187eac4b797069e2e6b736f14cdef85dbe405c9bfc7803ef36e4f62ef/altgraph-0.16.1-py2.py3-none-any.whl
+Collecting pywin32-ctypes (from pyinstaller)
+  Downloading https://files.pythonhosted.org/packages/9e/4b/3ab2720f1fa4b4bc924ef1932b842edf10007e4547ea8157b0b9fc78599a/pywin32_ctypes-0.2.0-py2.py3-none-any.whl
+Collecting future (from pefile>=2017.8.1->pyinstaller)
+  Downloading https://files.pythonhosted.org/packages/90/52/e20466b85000a181e1e144fd8305caf2cf475e2f9674e797b222f8105f5f/future-0.17.1.tar.gz (829kB)
+    100% |████████████████████████████████| 829kB 599kB/s
+Installing collected packages: future, pefile, altgraph, macholib, pywin32-ctypes, pyinstaller
+  Running setup.py install for future ... done
+  Running setup.py install for pefile ... done
+  Running setup.py install for pyinstaller ... done
+Successfully installed altgraph-0.16.1 future-0.17.1 macholib-1.11 pefile-2018.8.8 pyinstaller-3.4 pywin32-ctypes-0.2.0
+You are using pip version 9.0.3, however version 19.0.2 is available.
+You should consider upgrading via the 'python -m pip install --upgrade pip' command.
+```
+
+##### 1.2. 安装`pywin32`
+在`cmd`中输入
+```cmd
+pip install pywin32
+```
+显示为
+```cmd
+Collecting pywin32
+  Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.VerifiedHTTPSConnection object at 0x00000264961E7A58>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed',)': /packages/b2/1a/7727b406391b0178b6ccb7e447e963df5ebf1ce9e0f615fc6ce23b6f6753/pywin32-224-cp36-cp36m-win_amd64.whl
+  Downloading https://files.pythonhosted.org/packages/b2/1a/7727b406391b0178b6ccb7e447e963df5ebf1ce9e0f615fc6ce23b6f6753/pywin32-224-cp36-cp36m-win_amd64.whl (9.1MB)
+    100% |████████████████████████████████| 9.1MB 50kB/s
+Installing collected packages: pywin32
+Successfully installed pywin32-224
+You are using pip version 9.0.3, however version 19.0.2 is available.
+You should consider upgrading via the 'python -m pip install --upgrade pip' command.
+```
+
+#### 2. 制作
+使用`pyinstaller`命令进行制作。本例中代码文件存放为`d:\youdao_python_proj01_cv.py`。
+```cmd
+pyinstaller -F d:\youdao_python_proj01_cv.py
+```
+
+`pyinstaller`命令参数表：
+
+| 参数 |                            含义                             |
+| ---- | ---------------------------------------------------------- |
+| -F   | 指定打包后只生成一个exe格式的文件                             |
+| -D   | –onedir 创建一个目录，包含exe文件，但会依赖很多文件（默认选项） |
+| -c   | –console, –nowindowed 使用控制台，无界面(默认)               |
+| -w   | –windowed, –noconsole 使用窗口，无控制台                     |
+| -p   | 添加搜索路径，让其找到对应的库。                              |
+| -i   | 改变生成程序的icon图标                                       |
+
+显示为
+```cmd
+156 INFO: PyInstaller: 3.4
+156 INFO: Python: 3.6.5
+156 INFO: Platform: Windows-10-10.0.17134-SP0
+156 INFO: wrote C:\Users\maink\AppData\Local\Programs\Python\Python36\Scripts\youdao_python_proj01_cv.spec
+156 INFO: UPX is not available.
+171 INFO: Extending PYTHONPATH with paths
+['E:\\',
+ 'C:\\Users\\maink\\AppData\\Local\\Programs\\Python\\Python36\\Scripts']
+171 INFO: checking Analysis
+171 INFO: Building Analysis because Analysis-00.toc is non existent
+171 INFO: Initializing module dependency graph...
+171 INFO: Initializing module graph hooks...
+171 INFO: Analyzing base_library.zip ...
+4035 INFO: running Analysis Analysis-00.toc
+4051 INFO: Adding Microsoft.Windows.Common-Controls to dependent assemblies of final executable
+  required by c:\users\maink\appdata\local\programs\python\python36\python.exe
+5002 INFO: Caching module hooks...
+5017 INFO: Analyzing E:\youdao_python_proj01_cv.py
+5017 INFO: Loading module hooks...
+5017 INFO: Loading module hook "hook-encodings.py"...
+5158 INFO: Loading module hook "hook-pydoc.py"...
+5158 INFO: Loading module hook "hook-xml.py"...
+5469 INFO: Looking for ctypes DLLs
+5469 INFO: Analyzing run-time hooks ...
+5469 INFO: Looking for dynamic libraries
+5625 INFO: Looking for eggs
+5625 INFO: Using Python library c:\users\maink\appdata\local\programs\python\python36\python36.dll
+5625 INFO: Found binding redirects:
+[]
+5641 INFO: Warnings written to C:\Users\maink\AppData\Local\Programs\Python\Python36\Scripts\build\youdao_python_proj01_cv\warn-youdao_python_proj01_cv.txt
+5692 INFO: Graph cross-reference written to C:\Users\maink\AppData\Local\Programs\Python\Python36\Scripts\build\youdao_python_proj01_cv\xref-youdao_python_proj01_cv.html
+5739 INFO: checking PYZ
+5739 INFO: Building PYZ because PYZ-00.toc is non existent
+5739 INFO: Building PYZ (ZlibArchive) C:\Users\maink\AppData\Local\Programs\Python\Python36\Scripts\build\youdao_python_proj01_cv\PYZ-00.pyz
+6340 INFO: Building PYZ (ZlibArchive) C:\Users\maink\AppData\Local\Programs\Python\Python36\Scripts\build\youdao_python_proj01_cv\PYZ-00.pyz completed successfully.
+6356 INFO: checking PKG
+6356 INFO: Building PKG because PKG-00.toc is non existent
+6356 INFO: Building PKG (CArchive) PKG-00.pkg
+8691 INFO: Building PKG (CArchive) PKG-00.pkg completed successfully.
+8691 INFO: Bootloader c:\users\maink\appdata\local\programs\python\python36\lib\site-packages\PyInstaller\bootloader\Windows-64bit\run.exe
+8707 INFO: checking EXE
+8707 INFO: Building EXE because EXE-00.toc is non existent
+8707 INFO: Building EXE from EXE-00.toc
+8707 INFO: Appending archive to EXE C:\Users\maink\AppData\Local\Programs\Python\Python36\Scripts\dist\youdao_python_proj01_cv.exe
+8723 INFO: Building EXE from EXE-00.toc completed successfully.
+```
+
+之后在`Python安装目录` > `Scripts目录` > `dist目录` 下即可找到`.exe可执行文件`
