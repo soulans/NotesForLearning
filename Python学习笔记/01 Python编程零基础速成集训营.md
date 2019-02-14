@@ -1,8 +1,5 @@
 > 有道精品课 2019年2月14日
 # Python编程零基础速成集训营
-
-[TOC]
-
 ## 第一章 变量和数据类型
 ### 第一节丨变量
 #### 1. 变量命名规则
@@ -598,14 +595,15 @@ pyinstaller -F E:\youdao_python_proj01_cv.py
 
 之后在运行目录下，本文即`%homedrive%%homepath%\dist`目录下一般即可找到该文件。也可使用搜索功能查找`脚本文件名.exe`找到该文件。
 
-> **运行目录：**
-> cmd界面中
+> **运行目录：**  
+> cmd界面，`>`前，形为`C:\Users\maink`格式的路径即为运行目录。
+> 
 > ```cmd
 > Microsoft Windows [版本 10.0.17134.228]
 > (c) 2018 Microsoft Corporation。保留所有权利。
+> 
 > C:\Users\maink>
 > ```
-> `>`前，形为`C:\Users\maink`格式路径即为运行目录。
 
 #### 3. Python出现闪退
 这样直接制作的Python脚本可执行文件，会在执行到最后一行代码后自动退出。  
