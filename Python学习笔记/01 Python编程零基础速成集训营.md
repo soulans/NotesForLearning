@@ -470,7 +470,36 @@ print(set1 ^ set2)                           # res: {3, 4, 8, 9}
 
 ## 其他的小操作
 
-### 一、将`.py脚本文件`制作成为`.exe可执行文件`
+### 一、解决Sublime Text自带的Python编译功能无法接受input输入的方式
+Sublime Text有一个很方便的功能，按下`Ctrl+b`组合键就可以自动编译当前编辑的代码，并且将结果显示在下方窗体中。但是这种模式下，`input()`无法正常接受输入内容。因此自己重写了一下编译系统。  
+
+#### 1. 添加方式
+ - 英文：  
+依此点选：`菜单栏` >> `Tools` >> `Build System` >> `New Build System...`  
+
+ - 中文：  
+依此点选：`菜单栏` >> `工具` >> `编译系统` >> `新建编译系统`  
+
+然后将下方脚本内容替换新窗口的内容，使用任意名称保存即可。  
+```json
+// 用CMD窗口运行Python脚本
+// author: soulans
+// create: 2019-02-15
+{
+	"encoding": "utf-8",
+	"working_dir": "$file_path",
+	"shell_cmd": "start cmd /c \"python -i \"$file\"\"",
+	"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+	"selector": "source.python",
+}
+```
+
+#### 2. 执行
+使用快捷键`ctrl+shift+B`选择编译方式，选择`刚才保存的文件名`项即可。  
+ - 会以一个cmd窗口的形式展示执行结果。  
+ - 执行完毕后需要手动键入`exit()`或者`点击右上角的关闭按钮`退出该窗口。  
+
+### 二、将`.py脚本文件`制作成为`.exe可执行文件`
 #### 1. 前提准备
  - 在已经安装了Python的前提下，需要再安装两个软件。只需要使用`pip`命令安装就行了
  - 如果python没有在环境变量中，需要进入到Python安装目录下的Scripts目录内进行操作。默认一般为`%homedrive%%homepath%\AppData\Local\Programs\Python\Python36\Scripts`
