@@ -432,7 +432,55 @@ print(set1 ^ set2)                           # res: {3, 4, 8, 9}
 
 ## 第五章 if条件判断
 ### 第一节丨布尔表达式
+ - 表示判断中的`是`与`否`，一般用于条件测试中。  
+ - Python中，`True`与`False`首字母均大写。  
+ - `否[False]`包含很多内容，如：`None`, `数值0、0.0`, `空序列、元组、列表、字符串以及空字典`  
+
+#### 1. 逻辑运算符
+用于检测两个或者两个以上条件是否满足  
+
+| 运算符 |                                 描述                                 |
+| ----- | -------------------------------------------------------------------- |
+| and   | 逻辑与，左右两侧均为True时结果为True                                   |
+| or    | 逻辑或，左右两个有一个为真即为True，短路运算符: 左侧满足则不再计算右侧结果 |
+| not   | 逻辑非，非True即为False、非False即为True                               |
+
+```python
+print(True and True)     # res: True
+print(3 or 5)            # res: 3
+```
+
+可以嵌套使用
+```python
+print((3 or 5) and True) # res: True
+```
+
 ### 第二节丨if条件判断
+
+#### 1. 缩进问题
+ - 缩进方式：`四个空格`或者`一个Tab`，并且`不能混用`
+ - 相同缩进代码归为同一代码块  
+
+![Python缩进图示](_v_images/20190215210610941_1357.png)
+
+#### 2. 使用if进行条件判断
+> 注意：判断相等使用`==`双等于号
+
+```python
+# 使用.upper()函数将用户输入的小写f与m转换为大写的F与M
+user_gender = input("请输入你的性别(F/M): ").upper() 
+
+if user_gender== 'F':
+    print("你是最美丽的小仙女")
+elif user_gender == 'M':
+    print("这么可爱一定是男孩纸")
+else:
+    print("天哪！我发现了什么？！")
+```
+
+#### 3. MakerBean在线代码分步运行
+可以用这个网址里的工具分步运行代码
+[MakerBean在线代码分步运行](http://pythontutor.makerbean.com/visualize.html#mode=edit)
 
 - - - - -
 
