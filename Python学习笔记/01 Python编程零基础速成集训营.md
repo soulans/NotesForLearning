@@ -115,7 +115,7 @@ True or False
  - 从<<右至左<<：从-1开始，最大范围是字符串长度的负数
  - `列表[list]`, `元组[tuple]`也支持`双向索引`
 
-#### 2. 字符串长度 [len]
+#### 2. 字符串长度 `len()`
 ```python
 len(str)
 ```
@@ -200,8 +200,9 @@ int(某个数字/字符串)
 str(某个数字/某种数据类型)`
 ``` 
 
+- - - - -
 
-### 作业一丨创建一个问答式简历软件
+## 作业一丨创建一个问答式简历软件
 效果图  
 ![作业一效果图](_v_images/20190211221625704_3606.png)
 
@@ -468,7 +469,7 @@ print((3 or 5) and True) # res: True
 
 ```python
 # 使用.upper()函数将用户输入的小写f与m转换为大写的F与M
-user_gender = input("请输入你的性别(F/M): ").upper() 
+user_gender = input("请输入你的性别(F/M): ").upper()
 
 if user_gender== 'F':
     print("你是最美丽的小仙女")
@@ -486,13 +487,187 @@ else:
 
 ## 第六章 while循环
 ### while循环
+对`if`中案例的while改写，以避免用户多次输入错误。　　
+
+```python
+user_answer_correct = False
+
+while not user_answer_correct :
+	user_gender = input("请输入你的性别(F/M): ").upper()
+	if user_gender== 'F':
+	    print("你是最美丽的小仙女")
+	    user_answer_correct = True
+	elif user_gender == 'M':
+	    print("这么可爱一定是男孩纸")
+	    user_answer_correct = True
+	else:
+	    print("输入不正确，请输入F或者M")
+```
+
+当满足条件时，一直执行while中代码块
+
+```python
+i = 1
+while i<10 :
+    print(i, end=" ")   # 加上`end=" "`使得输出不换行而是以空格分隔
+    i += 1
+# res: 1 2 3 4 5 6 7 8 9 
+```
+
+#### 1. 跳出单层循环 `continue`
+执行该语句则跳出上层循环
+
+```python
+i = 1
+while i<10 :
+	i += 1
+	if i%2 > 0:
+		continue
+	print(i, end = " ")
+# res：2 4 6 8 10 
+```
+
+#### 2. 跳出整个循环 `break`
+
+```python
+i = 1
+while True:
+	print(i, end = " ")
+	i += 1
+	if i > 10:
+		break
+# res：1 2 3 4 5 6 7 8 9 10 
+```
 
 - - - - -
 
 ## 第七章 for循环
 ### for循环
-### 作业二丨创建一个运势预测软件
+for循环能使得指定变量循环依序取得列表中的值。  
 
+```python
+students_list = ["李雷", "韩梅梅", "马冬梅"]
+for student in students_list:
+	print(student)
+```
+输出结果为：
+```text
+李雷
+韩梅梅
+马冬梅
+```
+
+#### 1. 循环数字 `range()`
+>python中循环数字的做法也是`基于列表`的，通过`range(1, 10)`之类的语法生成一个纯数字的`range`(包含1, 不包含10，且`range`并不是`列表`类型)。  
+
+ - `range(p, q, s)` p: 起始、q：结束、s：间隔。
+ - range(q)时，默认从0开始。
+
+```python
+for x in range(1,10):
+	print(x, end=" ")
+# res: 1 2 3 4 5 6 7 8 9 
+```
+
+#### 2. 通过索引遍历列表内容
+- `len()`返回列表长度
+- `range()`返回数值序列
+```python
+students_list = ["李雷", "韩梅梅", "马冬梅"]
+for index in range(len(students_list)):
+	print(students_list[index])
+```
+输出结果为：
+```text
+李雷
+韩梅梅
+马冬梅
+```
+
+##### 2.1. 同时获取索引和值 `enumerate()`
+```python
+students_list = ["李雷", "韩梅梅", "马冬梅"]
+for index, value in enumerate(students_list):
+	print(index, value)
+```
+输出结果为
+```text
+0 李雷
+1 韩梅梅
+2 马冬梅
+```
+
+#### 3. 循环元组
+```python
+a = (1,2,3)
+for x in a:
+    print(a)
+```
+输出结果为：
+```text
+1
+2
+3
+```
+
+#### 4. 循环字典
+循环字典时，循环的是`key`的值。  
+```python
+a = {'a':1, 'b':2, 'c':3}
+for x in a:
+	print(x)
+```
+输出结果为：
+```text
+a
+b
+c
+```
+
+#### 5. 循环字符串
+```python
+a = 'abc'
+for x in a:
+	print(x)
+```
+输出结果为：
+```text
+a
+b
+c
+```
+
+#### 6. `for`与`while`循环的`else`语句
+除了`if`外，for与while循环也可以搭配else语句使用。  
+对于带有else子句的for循环和while循环，当循环因循环条件不成立而自然结束时回执行else中的代码。
+```python
+for x in range(20):
+	print(x, end=" ")
+else:
+	print("hello")
+```
+输出结果为：
+```text
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 hello
+```
+
+#### 7. 占位语句 `pass`
+该语句没有实际作用，仅作占位符使用，使得程序格式完整能够正常执行。  
+
+> 退出死循环的方式：`Ctrl+C`
+
+- - - - - 
+
+## 作业二丨创建一个运势预测软件
+
+效果图  
+通过一句一句的提问获取用户的信息  
+并根据用户信息生成一个可复现结果的运势预测  
+![作业二效果图](_v_images/20190216195431751_29294.png)
+
+代码  
+我就不写啦~
+ 
 - - - - -
 
 ### 复习及测试习题讲解
