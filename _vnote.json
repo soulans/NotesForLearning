@@ -1,0 +1,22 @@
+{
+    "attachment_folder": "_v_attachments",
+    "created_time": "2019-02-13T14:50:14Z",
+    "files": [
+    ],
+    "image_folder": "",
+    "recycle_bin_folder": "_v_recycle_bin",
+    "sub_directories": [
+        {
+            "name": "Python学习笔记"
+        },
+        {
+            "name": "Android学习笔记"
+        },
+        {
+            "name": "MySQL学习笔记"
+        }
+    ],
+    "tags": [
+    ],
+    "version": "1"
+}
