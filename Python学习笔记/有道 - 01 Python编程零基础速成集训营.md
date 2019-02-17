@@ -108,6 +108,7 @@ True or False
 |  !=   | 判断两侧是否不等        |
 
 ### 第二节丨字符串
+> 可以使用`dir(str)`这个方法，获取str字符串的所有方法名单  
 
 #### 1. 字符串索引组成  
 ![字符串索引组成](_v_images/20190211211724388_28323.png)
@@ -151,7 +152,26 @@ x = "HELLO WORLD"
 print(x.lower()) # res: hello world
 ```
 
-章节测试里的知识拓展
+##### 4.1. 去除字符串两侧空格的方法
+ - `lstrip()`
+这个字符串方法，会删除字符串s开始位置前的空格。
+```python
+"   iplaypython    ".lstrip() # res: 'iplaypython····'
+```
+
+ - `rstrip()`
+这个内置方法可以删除字符串末尾的所有空格，看下面演示代码：
+```python
+"   iplaypython    ".rstrip() # res: '···iplaypython'
+```
+
+ - `strip()`
+有的时候我们读取文件中的内容，每行2边都有空格，能不能一次性全部去掉呢，字符符有一个内置的strip()方法可以做到。
+```python
+"   iplaypython    "s.strip() # res: 'iplaypython'
+```
+
+##### 4.2. 章节测试里的知识拓展
 1. `v=name.strip()` 移除`指定字符串`，`空白`，`/t`，`/n`等转义字符  
 2. `v1=name.startswith("al")` 判断以什么开头
 3. `v2=name.endswith("X")` 判断以什么结尾
@@ -660,14 +680,50 @@ else:
 
 ## 作业二丨创建一个运势预测软件
 
-效果图  
+### 效果图  
 通过一句一句的提问获取用户的信息  
 并根据用户信息生成一个可复现结果的运势预测  
 ![作业二效果图](_v_images/20190216195431751_29294.png)
 
-代码  
-我就不写啦~
- 
+### 实现过程
+#### 1. 判断字符串是否为指定内容
+ - 用isdigit函数判断是否数字
+```python
+print("123".isdigit())		# res: Ture
+print("Abc".isdigit())		# res: False
+print("123Abc".isdigit())	# res: False
+```
+
+ - 用isalpha判断是否字母
+```python
+print("123".isalpha())		# res: False
+print("Abc".isalpha())		# res: Ture    
+print("123Abc".isalpha())   # res: False
+```
+
+ - isalnum判断是否数字和字母的组合
+```python
+print("123".isalnum())		# res: Ture
+print("Abc".isalnum())		# res: Ture
+print("123".isalnum())		# res: Ture
+```
+> 注意：如果字符串中含有除了字母或者数字之外的字符，比如空格，也会返回False
+
+#### 2. 代码
+```python
+sex = input("请输入你的性别(F/M): ").upper()
+while not (sex == "F" or sex == "M") :
+	sex = input("输入有误，请输入F和M代表性别: ")
+
+age = input("请输入你的年龄: ")
+while not (age.isdigit() and int(age)>0 and int(age)<200) :
+	age = input("输入有误，一个合理的正整数代表年龄: ")
+
+dict_couple = {"F":"男朋友", "M":"女朋友"}
+print("***你今年的运势***")
+print("你会考上清华并找到一个"+dict_couple[sex])
+```
+
 - - - - -
 
 ### 复习及测试习题讲解
